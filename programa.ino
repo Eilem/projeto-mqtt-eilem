@@ -19,9 +19,6 @@ bool mensagem;
 //Inicia o client MQTT
 PubSubClient mqttClient(client);
 
-// string do status do sensor
-string status = "DESLIGADO";
-
 void setup()
 {
   pinMode(pino2,INPUT_PULLUP); //Coloca o Pino 2 como Entrada
@@ -53,25 +50,24 @@ void setup()
 void loop()
 {
   estado_sensor = digitalRead(pino2); //Efetua a leitura do Pino 2 e armazena o valor obtido na variável
-  Serial.println(estado_sensor); //Exibe no Monitor Serial o Estado do Sensor
+ // Serial.println(estado_sensor); //Exibe no Monitor Serial o Estado do Sensor
 
   //Define o nome do cliente MQTT e efetua a conexão com o servidor.
   mqttClient.connect("eilem");
 
   if( estado_sensor ){
       Serial.println("RACK ABERTO");
-      status = "RACK ABERTO";
+      /*
+        Variável que envia a mensagem e armazena o valor de '1' caso
+        a mensagem seja enviada com sucesso e '0' caso o envio falhe
+      */
+      mensagem = mqttClient.publish("eilem_rack", "RACK ABERTO" );
+      
   }else{
-        Serial.println("RACK FECHADO");
-        status = "RACK FECHADO";
-  }
-
-  /*
-    Variável que envia a mensagem e armazena o valor de '1' caso
-    a mensagem seja enviada com sucesso e '0' caso o envio falhe
-  */
-  mensagem = mqttClient.publish("eilem_rack", status );
-
+      Serial.println("RACK FECHADO");        
+      mensagem = mqttClient.publish("eilem_rack", "RACK FECHADO" );
+      
+  }  
   //Função que verifica a conexão entre o Cliente e o Broker e evita a queda de conexão entre eles.
   mqttClient.loop();
 }
