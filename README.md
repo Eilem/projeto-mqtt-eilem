@@ -5,7 +5,7 @@ Esta aplicação tem como objetivo identificar se a porta do Rack está ***abert
 Os dados do sensor são enviados atravé do Arduino ( que está conectado em uma rede ) para o servidor hospedado na [AWS](https://aws.amazon.com/pt/) através do protocolo MQTT( Message Queuing Telemetry Transport ) onde a informação será exibida em um cliente MQTT através de um aplicativo ( ex. MQTT Dash* ) instalado em um Smartphone.
 
 
-* Verifique qual aplicação pode ser utilizada em seu celular de acordo com o sistema operacional do mesmo.   
+  * Verifique qual aplicação pode ser utilizada em seu celular de acordo com o sistema operacional do mesmo.   
 ---
 
 A informação disponibilizada pelo sensor é um boolean, onde:
