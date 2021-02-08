@@ -70,7 +70,7 @@ void loop()
     Variável que envia a mensagem e armazena o valor de '1' caso
     a mensagem seja enviada com sucesso e '0' caso o envio falhe
   */
-  mensagem = mqttClient.publish("sensor_rack_lab1", status );
+  mensagem = mqttClient.publish("eilem_rack", status );
 
   //Função que verifica a conexão entre o Cliente e o Broker e evita a queda de conexão entre eles.
   mqttClient.loop();
